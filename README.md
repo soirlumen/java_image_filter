@@ -20,7 +20,7 @@ Aplikace pro základní úpravy obrázků za pomocí knihoven Swing a BufferedIm
 ```cmd
 java -version
 ```
-- případně stáhnout z webu (např https://adoptium.net)  
+- případně stáhnout z webu (např.: https://adoptium.net)  
 
 ## Jak spustit .jar soubor
 1. Stáhnout `image_processing.jar` z repozitáře
@@ -34,7 +34,7 @@ java -jar image_processing.jar
 ```
 4. (volitelné) Pokud je v počítači více java verzí, můžete spustit specifickou takto:
 ```cmd
-C:\Program Files\Eclipse Adoptium\jdk-25.0.1.8-hotspot\bin\java.exe" -jar image_processing.jar
+"C:\Program Files\Eclipse Adoptium\jdk-25.0.1.8-hotspot\bin\java.exe" -jar image_processing.jar
 ```
 # Java Image Processor EN
 A simple desktop application for basic image editing using Java Swing and BufferedImage.
