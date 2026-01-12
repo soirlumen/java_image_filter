@@ -14,6 +14,9 @@ import java.util.ArrayList;
 import java.util.Objects;
 import java.awt.Dimension;
 
+/**
+ * třída pro vykreslení hlavního okna, image panelu a napojení filtrů na tlačítka
+ */
 public class MainFrame extends JFrame {
     // vykreslení obrázku v hlavním okně
     final ImagePanel imagePanel;

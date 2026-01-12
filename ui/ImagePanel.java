@@ -8,17 +8,20 @@ import java.awt.event.MouseMotionAdapter;
 import java.awt.image.BufferedImage;
 
 /**
- * class na vykreslení, pohyb a zoom panelu s nahrátým obrázkem
+ * třída na vykreslení, pohyb a zoom panelu s nahrátým obrázkem
  */
 public class ImagePanel extends JPanel {
     private Image image;
-    private double scale = 1.0;  // nové – aktuální zoom
+    private double scale = 1.0;  // aktuální zoom
     private int offsetX = 0;
     private int offsetY = 0;
     private int lastX;
     private int lastY;
     private boolean dragging = false;
 
+    /**
+     * konstruktor
+     */
     public ImagePanel() {
         addMouseListener(new MouseAdapter() {
             @Override
@@ -51,7 +54,7 @@ public class ImagePanel extends JPanel {
 
     public void setImage(Image img) {
         this.image = img;
-        scale = 1.0;       // reset zoom při novém obrázku
+        scale = 1.0; // reset zoom při novém obrázku
         offsetX = 0;
         offsetY = 0;
         repaint();

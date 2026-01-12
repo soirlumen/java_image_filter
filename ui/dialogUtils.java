@@ -6,6 +6,10 @@ import java.awt.image.BufferedImage;
 
 import image.*;
 
+/**
+ * třída pro vykreslení dialogových okýnek
+ * slouží pro získání parametrů filtru od uživatele
+ */
 public class dialogUtils {
     private final MainFrame parent;
 

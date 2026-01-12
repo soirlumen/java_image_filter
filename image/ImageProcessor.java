@@ -7,7 +7,7 @@ public class ImageProcessor {
     /**
      * Algoritmus pro úpravu jasu
      * @param img BufferedImage původního obrázku
-     * @param perctg úroveň jasnosti, hodnoty mimo <-100,100> "ořízne"
+     * @param perctg úroveň jasnosti, hodnoty mimo [-100,100] "ořízne"
      * @return BufferedImage původních rozměrů s přičtenou konstantou ke každému pixelu pro úpravu jasu
      */
     public static BufferedImage brightness(BufferedImage img, int perctg) {
@@ -15,7 +15,7 @@ public class ImageProcessor {
 
         int height = img.getHeight();
         int width = img.getWidth();
-        // chci procenta z 255 protože pixel má hodnotu <0,255>, hodnoty přesahující <-100,100> % jsou oříznuty
+        // chci procenta z 255 protože pixel má hodnotu [0,255], hodnoty přesahující [-100,100] % jsou oříznuty
         int amount = Math.max(-255, Math.min(255, perctg * 255 / 100));
         BufferedImage result = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB); //nachystáme nový obrázek
 
@@ -127,7 +127,7 @@ public class ImageProcessor {
     /**
      * algoritmus pro rotaci obrázku doleva
      * @param img BufferedImage původního obrázku
-     * @return BufferedImage obrácených rozměrů (w<->h) a orotovaných levotočivě:)
+     * @return BufferedImage obrácených rozměrů (w za h) a orotovaných levotočivě:)
      */
     public static BufferedImage rotateLeft(BufferedImage img) {
         if (img == null) return null;
@@ -153,7 +153,7 @@ public class ImageProcessor {
     /**
      * algoritmus pro rotaci obrázku doprava
      * @param img BufferedImage původního obrázku
-     * @return BufferedImage obrácených rozměrů (w<->h) a orotovaných pravotočivě:)
+     * @return BufferedImage obrácených rozměrů (w za h) a orotovaných pravotočivě:)
      */
     public static BufferedImage rotateRight(BufferedImage img) {
         if (img == null) return null;
@@ -180,7 +180,7 @@ public class ImageProcessor {
      * algoritmus pro převrácení obrázku podle osy Y
      * optimalizace: prochází jen půlku výšky a swapuje zároveň oba protilehlé pixely
      * @param img BufferedImage původního obrázku
-     * @return BufferedImage obrácených rozměrů (w<->h) vertikálně převrácené
+     * @return BufferedImage obrácených rozměrů (w za h) vertikálně převrácené
      */
     public static BufferedImage flipV(BufferedImage img) {
         if (img == null) return null;
