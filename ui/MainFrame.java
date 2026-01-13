@@ -38,7 +38,6 @@ public class MainFrame extends JFrame {
     JButton btnZoom;
     JButton btnDezoom;
 
-
     // vlaječky
     boolean isImage = false;
 
@@ -63,8 +62,9 @@ public class MainFrame extends JFrame {
     JMenuItem flipV;
     JMenu help;
     JMenuItem about;
-    int WINDOW_WIDTH=800;
-    int WINDOW_HEIGHT=600;
+    JMenuItem docs;
+    int WINDOW_WIDTH = 800;
+    int WINDOW_HEIGHT = 600;
 
     private final java.util.List<JMenuItem> menuItemsToDisable = new ArrayList<>();
 
@@ -76,6 +76,13 @@ public class MainFrame extends JFrame {
     public MainFrame() {
         super("Aplikace na úpravu obrázků");
         setSize(800, 600);
+        //ikona aplikace
+        try {
+            Image icon = ImageIO.read(Objects.requireNonNull(getClass().getResource("icons/ico.png")));
+            setIconImage(icon);
+        } catch (Exception e) {
+            System.err.println("Ikona aplikace se nepodařila načíst: " + e.getMessage());
+        }
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         imagePanel = new ImagePanel();
         JScrollPane scrolex = new JScrollPane(imagePanel);
@@ -126,7 +133,7 @@ public class MainFrame extends JFrame {
         filters.add(gaussianItem);
 
         edge = new JMenuItem("Edge!");
-        edge.addActionListener(e ->runBackground("Chyba při detekci hran", ImageProcessor::detectEdges));
+        edge.addActionListener(e -> runBackground("Chyba při detekci hran", ImageProcessor::detectEdges));
         filters.add(edge);
 
         invertcolor = new JMenuItem("Invert colors!");
@@ -195,12 +202,15 @@ public class MainFrame extends JFrame {
 
         help = new JMenu("Help");
         about = new JMenuItem("About");
-        about.addActionListener(e->{
+        about.addActionListener(e -> {
             String message = "Aplikace na úpravu obrázků\n" + "Verze 1.0\n" + "Autor: Mirka Novotná\n" + "2025–2026";
 
             JOptionPane.showMessageDialog(this, message, "O aplikaci", JOptionPane.INFORMATION_MESSAGE);
         });
         help.add(about);
+        docs = new JMenuItem("Documenation...");
+        docs.addActionListener(e -> OpenDocs());
+        help.add(docs);
         bar.add(help);
         setJMenuBar(bar);
     }
@@ -208,7 +218,7 @@ public class MainFrame extends JFrame {
     /**
      * Itemy menu, které nemají být přístupné během výpočtu
      */
-    private void addToEnable(){
+    private void addToEnable() {
         menuItemsToDisable.add(gaussianItem);
         menuItemsToDisable.add(edge);
         menuItemsToDisable.add(invertcolor);
@@ -242,9 +252,13 @@ public class MainFrame extends JFrame {
             Image icoForward = ImageIO.read(Objects.requireNonNull(getClass().getResource("icons/forward.png")));
             Image smallIcoForward = icoForward.getScaledInstance(iconSize, iconSize, Image.SCALE_DEFAULT);
             btnUndo.setIcon(new ImageIcon(smallIcoUndo));
+            btnUndo.setToolTipText("Zpět - vrátit poslední úpravu");
             btnForward.setIcon(new ImageIcon(smallIcoForward));
+            btnForward.setToolTipText("Vpřed - zopakovat vrácenou úpravu");
             btnOpenPic.setIcon(new ImageIcon(smallIcoOpenf));
+            btnOpenPic.setToolTipText("Otevřít obrázek...");
             btnReset.setIcon(new ImageIcon(smallIcoreset));
+            btnReset.setToolTipText("Resetovat zobrazení - přiblížení na 100%");
         } catch (Exception e) {
             System.out.println(e);
         }
@@ -404,9 +418,31 @@ public class MainFrame extends JFrame {
         progressBar.setVisible(!enabled);
         updateUndoRedoButtons();
     }
+
     private void updateUndoRedoButtons() {
         btnUndo.setEnabled(history.canUndo());
         btnForward.setEnabled(history.canRedo());
+    }
+
+    /**
+     * metoda na otevření dokumentace aplikace na webu
+     */
+    private void OpenDocs() {
+        try {
+            File docFile = new File("src/Documentation/index.html");
+            if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
+                Desktop.getDesktop().browse(docFile.toURI());
+            } else {
+                JOptionPane.showMessageDialog(this, "Nelze otevřít prohlížeč...\n"
+                        + "Dokumentace je na adrese:\n"
+                        + docFile.getAbsolutePath(), "Pozor", JOptionPane.INFORMATION_MESSAGE);
+            }
+
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(this,
+                    "Nepodařilo se otevřít dokumentaci:\n" + ex.getMessage(), "Chyba", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
     }
 
     /**
@@ -438,6 +474,7 @@ public class MainFrame extends JFrame {
                     progressBar.setValue(chunks.getLast());
                 }
             }
+
             @Override
             protected void done() {
                 try {

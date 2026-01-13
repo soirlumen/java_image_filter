@@ -5,6 +5,9 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * pomocná třída uchovávající historii změn obrázku a iterovaní mezi změnami
+ */
 public class HistoryManager {
     private final List<BufferedImage> history = new ArrayList<>();
     private int index = -1;
@@ -14,13 +17,17 @@ public class HistoryManager {
         index = -1;
     }
 
-    /** Reset historie na jeden počáteční snímek (typicky po openImage). */
+    /**
+     * reset historie na jeden počáteční snímek-typicky po openImage
+     * */
     public void reset(BufferedImage img) {
         clear();
         push(img);
     }
 
-    /** Přidá nový stav a zahodí "redo" větev. */
+    /**
+     * Přidá nový stav a zahodí "redo" větev.
+     * */
     public void push(BufferedImage img) {
         if (img == null) return;
 

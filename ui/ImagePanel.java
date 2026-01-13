@@ -21,6 +21,8 @@ public class ImagePanel extends JPanel {
 
     /**
      * konstruktor
+     * Override metody pro interakce myši s panelem
+     * zmáčknutí a táhnutí myši způsobí posun obrázku v panelu
      */
     public ImagePanel() {
         addMouseListener(new MouseAdapter() {
@@ -92,17 +94,29 @@ public class ImagePanel extends JPanel {
         g2d.dispose();
     }
 
+    /**
+     * metoda vracející obrázek "doprostřed" okna
+     */
     public void resetImagePos() {
         offsetX = 0;
         offsetY = 0;
         scale = 1.0;
         repaint();
     }
+
+    /**
+     * metoda pro změnu zoomu při zobrazení obrázku
+     * @param newScale velikost nového zoomu obrázku
+     */
     public void setScale(double newScale) {
         scale = Math.max(0.1, Math.min(10.0, newScale));
         repaint();
     }
 
+    /**
+     * bezpečná metoda pro předání zobrazovaného obrázku typu BufferedImage
+     * @return BufferedImage
+     */
     public BufferedImage getBufferedImage() {
         if (image instanceof BufferedImage) {
             return (BufferedImage) image;

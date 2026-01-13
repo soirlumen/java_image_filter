@@ -2,8 +2,18 @@ package image;
 
 import java.awt.image.BufferedImage;
 
-public class ImageProcessor {
-
+/**
+ * třída pro samotné zpracování obrázku
+ * konvoluce pomocí různých jader, přepočítávání hodnot pixelů a jednoduchá transformace
+ * statická třída, nelze vytvářet instance!
+ */
+public final class ImageProcessor {
+    /**
+     * privátní konstruktor, jelikož je třída statická
+     */
+    private ImageProcessor() {
+        throw new AssertionError("Nelze vytvářet instance!");
+    }
     /**
      * Algoritmus pro úpravu jasu
      * @param img BufferedImage původního obrázku
