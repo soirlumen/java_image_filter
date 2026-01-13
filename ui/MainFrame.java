@@ -428,11 +428,14 @@ public class MainFrame extends JFrame {
      * metoda na otevření dokumentace aplikace na webu
      */
     private void OpenDocs() {
-        try {
-            File docFile = new File("src/Documentation/index.html");
+        File docFile = new File("documentation/index.html");
+        //pro funkčnost v IDE
+        File docFile2 = new File("src/documentation/index.html");
+        try {;
             if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
                 Desktop.getDesktop().browse(docFile.toURI());
-            } else {
+            }
+            else{
                 JOptionPane.showMessageDialog(this, "Nelze otevřít prohlížeč...\n"
                         + "Dokumentace je na adrese:\n"
                         + docFile.getAbsolutePath(), "Pozor", JOptionPane.INFORMATION_MESSAGE);
