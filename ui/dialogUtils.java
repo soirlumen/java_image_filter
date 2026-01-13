@@ -61,7 +61,7 @@ public class dialogUtils {
             return null;
         }
 
-        // === KERNEL SLIDER (jen liché hodnoty) ===
+        //kernel slider-jen liché hodnoty slideru
         JSlider kernelSlider = new JSlider(3, 15, 5);
         kernelSlider.setMajorTickSpacing(2);
         kernelSlider.setMinorTickSpacing(2);
@@ -69,7 +69,7 @@ public class dialogUtils {
         kernelSlider.setPaintLabels(true);
         kernelSlider.setSnapToTicks(true);
 
-        // === SIGMA SLIDER ===
+        // sigma slider
         JSlider sigmaSlider = new JSlider(50, 500, 140);
         sigmaSlider.setMajorTickSpacing(100);
         sigmaSlider.setMinorTickSpacing(50);

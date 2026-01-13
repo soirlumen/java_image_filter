@@ -75,7 +75,7 @@ public class MainFrame extends JFrame {
      */
     public MainFrame() {
         super("Aplikace na úpravu obrázků");
-        setSize(800, 600);
+        setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         //ikona aplikace
         try {
             Image icon = ImageIO.read(Objects.requireNonNull(getClass().getResource("icons/ico.png")));
@@ -481,7 +481,7 @@ public class MainFrame extends JFrame {
                     BufferedImage result = get();
                     if (result != null) {
                         imagePanel.updateImage(result);
-                        history.push(result);          // teď už používáš HistoryManager (ok)
+                        history.push(result);
                         imagePanel.resetImagePos();
                         slider.setValue(100);
                         updateUndoRedoButtons();
