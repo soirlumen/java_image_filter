@@ -15,7 +15,7 @@ Aplikace pro základní úpravy obrázků za pomocí knihoven Swing a BufferedIm
 - resetování pozice obrázku
 
 ## Požadavky na spuštění
-- **Java 17 nebo novější**, jistě funguje na v25.0.1
+- **Java 23 nebo novější**, jistě funguje na v25.0.1
 - zkontrolovat verzi pomocí:
 ```cmd
 java -version
