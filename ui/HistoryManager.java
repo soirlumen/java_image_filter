@@ -33,7 +33,7 @@ public class HistoryManager {
 
         // zahod redo (vše za indexem)
         while (history.size() > index + 1) {
-            history.remove(history.size() - 1);
+            history.removeLast();
         }
 
         history.add(deepCopy(img));

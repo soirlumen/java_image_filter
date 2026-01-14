@@ -106,7 +106,7 @@ public class MainFrame extends JFrame {
         bar = new JMenuBar();
 
         file = new JMenu("File");
-        open = new JMenuItem("Open");
+        open = new JMenuItem("Open...");
         open.addActionListener(e -> openImage());
         file.add(open);
 
@@ -514,11 +514,11 @@ public class MainFrame extends JFrame {
         BufferedImage current = imagePanel.getBufferedImage();
         if (current == null) return;
 
-        BufferedImage out = op.apply(current);
-        if (out == null) return;
+        BufferedImage result = op.apply(current);
+        if (result == null) return;
 
-        imagePanel.updateImage(out);
-        history.push(out);
+        imagePanel.updateImage(result);
+        history.push(result);
 
         if (resetView) {
             imagePanel.resetImagePos();

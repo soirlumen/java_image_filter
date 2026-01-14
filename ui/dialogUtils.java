@@ -150,6 +150,7 @@ public class dialogUtils {
             previewLabel.setText(String.format("Nová velikost: %d × %d px", newW, newH));
         });
 
+        //při otevření dialogu ihned aktualizuje listener slideru
         slider.getChangeListeners()[0].stateChanged(null);
 
         JPanel panel = new JPanel();
@@ -179,11 +180,11 @@ public class dialogUtils {
         String[] labels = {
                 "Mean value",
                 "Luminance BT.709",
-                "Luma.BT601",
+                "Luma BT.601",
         };
 
         JComboBox<String> combo = new JComboBox<>(labels);
-        combo.setSelectedIndex(1);
+        combo.setSelectedIndex(0);
 
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
