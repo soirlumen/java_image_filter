@@ -415,8 +415,10 @@ public class MainFrame extends JFrame {
         btnZoom.setEnabled(enabled);
         btnDezoom.setEnabled(enabled);
 
+        btnUndo.setEnabled(enabled);
+        btnForward.setEnabled(enabled);
+
         progressBar.setVisible(!enabled);
-        updateUndoRedoButtons();
     }
 
     private void updateUndoRedoButtons() {
@@ -430,7 +432,7 @@ public class MainFrame extends JFrame {
     private void OpenDocs() {
         File docFile = new File("documentation/index.html");
         //pro funkčnost v IDE
-        File docFile2 = new File("src/documentation/index.html");
+        //File docFile = new File("src/documentation/index.html");
         try {;
             if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
                 Desktop.getDesktop().browse(docFile.toURI());
@@ -487,13 +489,13 @@ public class MainFrame extends JFrame {
                         history.push(result);
                         imagePanel.resetImagePos();
                         slider.setValue(100);
-                        updateUndoRedoButtons();
-                    }
+                                            }
                 } catch (Exception ex) {
                     JOptionPane.showMessageDialog(MainFrame.this,
                             errorTitle + ": " + ex.getMessage());
                 } finally {
                     setUIEnabled(true);
+                    updateUndoRedoButtons();
                 }
             }
         }.execute();
